@@ -8,132 +8,85 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Inter', sans-serif;
-}
-
 body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
   background: #020617;
   color: white;
-  overflow-x: hidden;
 }
 
-/* BACKGROUND ANIMATION */
-body::before {
+/* HERO BACKGROUND IMAGE */
+.hero {
+  height: 100vh;
+  background: url('logo.png') no-repeat center;
+  background-size: contain;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #020617;
+}
+
+/* DARK OVERLAY */
+.hero::before {
   content: "";
-  position: fixed;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(59,130,246,0.2), transparent 70%);
-  animation: moveBg 20s linear infinite;
-  z-index: -1;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(2,6,23,0.85);
+  top: 0;
+  left: 0;
 }
 
-@keyframes moveBg {
-  0% { transform: translate(0,0); }
-  50% { transform: translate(-25%, -25%); }
-  100% { transform: translate(0,0); }
+.hero-content {
+  position: relative;
+  text-align: center;
 }
 
-/* NAVBAR */
 nav {
   display: flex;
   justify-content: space-between;
-  padding: 20px 60px;
+  padding: 20px 40px;
+  align-items: center;
 }
 
-.logo {
-  font-size: 22px;
-  font-weight: 600;
-  color: #60a5fa;
+.logo img {
+  height: 40px;
 }
 
 .btn {
-  background: linear-gradient(45deg, #3b82f6, #6366f1);
+  background: linear-gradient(45deg,#3b82f6,#6366f1);
   padding: 10px 20px;
-  border-radius: 10px;
+  border-radius: 8px;
   border: none;
   color: white;
   cursor: pointer;
-  transition: 0.3s;
-}
-
-.btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(99,102,241,0.7);
-}
-
-/* HERO */
-.hero {
-  text-align: center;
-  padding: 140px 20px;
-}
-
-.hero h1 {
-  font-size: 54px;
-  background: linear-gradient(to right, #60a5fa, #a78bfa);
-  -webkit-background-clip: text;
-  color: transparent;
-}
-
-.hero p {
-  margin: 20px 0;
-  color: #94a3b8;
-}
-
-/* GLASS CARD */
-.glass {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
-  backdrop-filter: blur(12px);
-  border-radius: 15px;
 }
 
 /* SECTIONS */
 .section {
-  padding: 100px 20px;
+  padding: 80px 20px;
   text-align: center;
 }
 
 .cards {
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
-  gap: 25px;
-  margin-top: 40px;
+  justify-content: center;
+  gap: 20px;
 }
 
 .card {
-  width: 240px;
-  padding: 30px;
-  transition: 0.4s;
+  background: rgba(255,255,255,0.05);
+  padding: 25px;
+  border-radius: 12px;
+  width: 250px;
 }
 
-.card:hover {
-  transform: translateY(-12px) scale(1.03);
-  box-shadow: 0 0 25px rgba(59,130,246,0.3);
-}
-
-/* SCROLL ANIMATION */
-.hidden {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all 1s;
-}
-
-.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* FOOTER */
 footer {
-  padding: 40px;
   text-align: center;
-  color: #64748b;
+  padding: 30px;
+  color: gray;
 }
 </style>
 </head>
@@ -141,61 +94,33 @@ footer {
 <body>
 
 <nav>
-  <div class="logo">Neurolytics AI</div>
-  <button class="btn">Contact</button>
+  <div class="logo">
+    <img src="logo.png" alt="Neurolytics AI Logo">
+  </div>
+  <button class="btn">Get Quote</button>
 </nav>
 
 <section class="hero">
-  <h1>Transforming Data into Intelligent Decisions</h1>
-  <p>AI-powered analytics, automation & machine learning solutions</p>
-  <button class="btn">Get Started</button>
+  <div class="hero-content">
+    <h1>AI & Data Solutions for Modern Businesses</h1>
+    <p>We turn data into intelligent business decisions</p>
+    <button class="btn">Book Free Consultation</button>
+  </div>
 </section>
 
-<section class="section hidden">
-  <h2>About Us</h2>
-  <p>We build intelligent systems that turn raw data into actionable insights and scalable AI solutions.</p>
-</section>
-
-<section class="section hidden">
+<section class="section">
   <h2>Our Services</h2>
   <div class="cards">
-    <div class="card glass">AI Solutions</div>
-    <div class="card glass">Data Analytics</div>
-    <div class="card glass">Machine Learning</div>
-    <div class="card glass">Data Annotation</div>
+    <div class="card">AI Development</div>
+    <div class="card">Data Analytics</div>
+    <div class="card">Machine Learning</div>
+    <div class="card">Data Annotation</div>
   </div>
-</section>
-
-<section class="section hidden">
-  <h2>Why Choose Us</h2>
-  <div class="cards">
-    <div class="card glass">Fast & Scalable</div>
-    <div class="card glass">Data-Driven</div>
-    <div class="card glass">AI Expertise</div>
-  </div>
-</section>
-
-<section class="section hidden">
-  <h2>Contact</h2>
-  <p>Let’s build something amazing together</p>
-  <button class="btn">Get in Touch</button>
 </section>
 
 <footer>
-  © 2026 Neurolytics AI. All rights reserved.
+  © 2026 Neurolytics AI
 </footer>
-
-<script>
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting){
-      entry.target.classList.add('show');
-    }
-  });
-});
-
-document.querySelectorAll('.hidden').forEach(el => observer.observe(el));
-</script>
 
 </body>
 </html>

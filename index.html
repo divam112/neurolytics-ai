@@ -5,19 +5,37 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Neurolytics AI</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 body {
-  background: radial-gradient(circle at top, #0f172a, #020617);
+  background: #020617;
   color: white;
+  overflow-x: hidden;
+}
+
+/* BACKGROUND ANIMATION */
+body::before {
+  content: "";
+  position: fixed;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(59,130,246,0.2), transparent 70%);
+  animation: moveBg 20s linear infinite;
+  z-index: -1;
+}
+
+@keyframes moveBg {
+  0% { transform: translate(0,0); }
+  50% { transform: translate(-25%, -25%); }
+  100% { transform: translate(0,0); }
 }
 
 /* NAVBAR */
@@ -45,16 +63,17 @@ nav {
 
 .btn:hover {
   transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(99,102,241,0.7);
 }
 
 /* HERO */
 .hero {
   text-align: center;
-  padding: 120px 20px;
+  padding: 140px 20px;
 }
 
 .hero h1 {
-  font-size: 48px;
+  font-size: 54px;
   background: linear-gradient(to right, #60a5fa, #a78bfa);
   -webkit-background-clip: text;
   color: transparent;
@@ -69,13 +88,13 @@ nav {
 .glass {
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.1);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
   border-radius: 15px;
 }
 
 /* SECTIONS */
 .section {
-  padding: 80px 20px;
+  padding: 100px 20px;
   text-align: center;
 }
 
@@ -83,37 +102,36 @@ nav {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 25px;
   margin-top: 40px;
 }
 
 .card {
-  width: 220px;
+  width: 240px;
   padding: 30px;
-  transition: 0.3s;
+  transition: 0.4s;
 }
 
 .card:hover {
-  transform: translateY(-10px);
+  transform: translateY(-12px) scale(1.03);
+  box-shadow: 0 0 25px rgba(59,130,246,0.3);
 }
 
-/* ANIMATION */
-.fade-in {
+/* SCROLL ANIMATION */
+.hidden {
   opacity: 0;
-  transform: translateY(30px);
-  animation: fadeIn 1s ease forwards;
+  transform: translateY(40px);
+  transition: all 1s;
 }
 
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* FOOTER */
 footer {
-  padding: 30px;
+  padding: 40px;
   text-align: center;
   color: #64748b;
 }
@@ -127,18 +145,18 @@ footer {
   <button class="btn">Contact</button>
 </nav>
 
-<section class="hero fade-in">
+<section class="hero">
   <h1>Transforming Data into Intelligent Decisions</h1>
   <p>AI-powered analytics, automation & machine learning solutions</p>
   <button class="btn">Get Started</button>
 </section>
 
-<section class="section fade-in">
+<section class="section hidden">
   <h2>About Us</h2>
   <p>We build intelligent systems that turn raw data into actionable insights and scalable AI solutions.</p>
 </section>
 
-<section class="section">
+<section class="section hidden">
   <h2>Our Services</h2>
   <div class="cards">
     <div class="card glass">AI Solutions</div>
@@ -148,7 +166,7 @@ footer {
   </div>
 </section>
 
-<section class="section fade-in">
+<section class="section hidden">
   <h2>Why Choose Us</h2>
   <div class="cards">
     <div class="card glass">Fast & Scalable</div>
@@ -157,7 +175,7 @@ footer {
   </div>
 </section>
 
-<section class="section fade-in">
+<section class="section hidden">
   <h2>Contact</h2>
   <p>Let’s build something amazing together</p>
   <button class="btn">Get in Touch</button>
@@ -166,6 +184,18 @@ footer {
 <footer>
   © 2026 Neurolytics AI. All rights reserved.
 </footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('show');
+    }
+  });
+});
+
+document.querySelectorAll('.hidden').forEach(el => observer.observe(el));
+</script>
 
 </body>
 </html>
